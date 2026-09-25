@@ -24,11 +24,7 @@ async def startbot(message: Message):
             f"Hello {message.from_user.first_name} dear!"
         )
     else:
-        await save_user(
-            message.from_user.id,
-            message.from_user.username,
-            message.from_user.first_name,
-            message.from_user.last_name
+        await save_user(message.from_user.id,message.from_user.username,message.from_user.first_name,message.from_user.last_name
         )
         await message.answer(
             f"Hello {message.from_user.first_name} dear!"
@@ -82,11 +78,11 @@ async def show_task_command(message: Message):
         await message.answer("You don't have any tasks yet.")
         return
 
-    text = "Your Tasks:\n\n"
+    text = "Your Tasks:\n"
 
-    for i, task in enumerate(tasks, start=1):
-        text += f"{i}. {task['task_text']}\n"
-
+    for i in tasks:
+        text += f"{i['task_text']}\n"
+    
     await message.answer(text)
 
 async def main():
